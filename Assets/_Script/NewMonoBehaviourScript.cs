@@ -49,6 +49,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public void SetVolume(float level)
     {
+        level = Mathf.Clamp(level, 0.0001f, 1f);
         mixer.SetFloat("MasterVolume", Mathf.Log10(level) * 20f);
         PlayerPrefs.SetFloat("volume", level);
     }
