@@ -18,7 +18,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     void Start()
     {
         LoadSettings();
-        SaveSettings();
+        ApplySettings();
     }
 
     public void SetQuality(int index)
@@ -29,15 +29,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public void SetMusic(bool isOn)
     {
-        mixer.SetFloat("musicVolume", isOn ? 0 : -80);
+        mixer.SetFloat("music", isOn ? 0 : -80);
         PlayerPrefs.SetInt("music", isOn ? 1 : 0);
     }
 
     public void SetSFX(bool isOn)
     {
-        mixer.SetFloat("sfxVolume", isOn ? 0 : -80);
+        mixer.SetFloat("sfx", isOn ? 0 : -80);
         PlayerPrefs.SetInt("sfx", isOn ? 1 : 0);
     }
+
 
     public void SetShadow(bool isOn)
     {
@@ -64,7 +65,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         VolumeSlider.value = PlayerPrefs.GetFloat("volume", 1f);
     }
 
-    public void SaveSettings()
+    public void ApplySettings()
     {
         SetQuality(QualityDropdown.value);
         SetMusic(MusicToggle.isOn);
@@ -72,4 +73,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         SetShadow(ShadowToggle.isOn);
         SetVolume(VolumeSlider.value);
     }
+
+    public void SaveSettings()
+    {
+        PlayerPrefs.Save();
+    }
+
 }
